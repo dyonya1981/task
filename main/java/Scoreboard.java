@@ -3,7 +3,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-public class Scoreboard {
+public class Scoreboard implements IScoreboard{
     private final List<Match> matches;
 
     public Scoreboard() {
@@ -42,7 +42,7 @@ public class Scoreboard {
         return match.orElse(null);
     }
 
-    public List<Match> getSummary() {
+    public List<IMatch> getSummary() {
         matches.sort(Comparator.comparingInt((Match m) -> m.getHomeScore() + m.getAwayScore())
                 .reversed().thenComparing(matches::indexOf));
         return new ArrayList<>(matches);

@@ -1,4 +1,4 @@
-public class Match {
+public class Match implements IMatch {
     private final String homeTeam;
     private final String awayTeam;
     private int homeScore;

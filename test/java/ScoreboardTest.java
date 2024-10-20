@@ -43,7 +43,7 @@ class ScoreboardTest {
         scoreboard.updateScore("Mexico", "Canada", 0, 5);
         scoreboard.updateScore("Spain", "Brazil", 10, 2);
 
-        List<Match> summary = scoreboard.getSummary();
+        List<IMatch> summary = scoreboard.getSummary();
         assertEquals("Spain 10 - Brazil 2", summary.get(0).toString());
         assertEquals("Mexico 0 - Canada 5", summary.get(1).toString());
     }
