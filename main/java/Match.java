@@ -5,16 +5,18 @@ public class Match implements IMatch {
     private int awayScore;
 
     public Match(String homeTeam, String awayTeam) {
-        if (homeTeam == null || homeTeam.isEmpty() || awayTeam == null || awayTeam.isEmpty()) {
-            throw new IllegalArgumentException("Team names cannot be null or empty");
-        }
-        if (homeTeam.equals(awayTeam)) {
-            throw new IllegalArgumentException("Teams cannot be the same");
-        }
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.homeScore = 0;
         this.awayScore = 0;
+    }
+
+    // Constructor for creating a new Match instance with updated scores
+    public Match(String homeTeam, String awayTeam, int homeScore, int awayScore) {
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
+        this.homeScore = homeScore;
+        this.awayScore = awayScore;
     }
 
     public String getHomeTeam() {
@@ -31,19 +33,6 @@ public class Match implements IMatch {
 
     public int getAwayScore() {
         return awayScore;
-    }
-
-    public void updateScore(int homeScore, int awayScore) {
-        if (homeScore < 0 || awayScore < 0) {
-            throw new IllegalArgumentException("Scores cannot be negative");
-        }
-        this.homeScore = homeScore;
-        this.awayScore = awayScore;
-    }
-
-    @Override
-    public String toString() {
-        return homeTeam + " " + homeScore + " - " + awayTeam + " " + awayScore;
     }
 }
 

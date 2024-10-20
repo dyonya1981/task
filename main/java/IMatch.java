@@ -3,5 +3,4 @@ public interface IMatch {
     String getAwayTeam();
     int getHomeScore();
     int getAwayScore();
-    void updateScore(int homeScore, int awayScore);
 }
