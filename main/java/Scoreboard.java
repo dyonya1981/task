@@ -51,9 +51,14 @@ public class Scoreboard implements IScoreboard{
 
     public List<String> getSummaryFormatted() {
         List<String> summary = new ArrayList<>();
-        for (IMatch match : getSummary()) {
-            summary.add(match.getHomeTeam() + " " + match.getHomeScore() + " - " + match.getAwayTeam() + " " + match.getAwayScore());
+        List<IMatch> internalMatches = getSummary(); // Internal matches not exposed directly
+        for (IMatch match : internalMatches) {
+            summary.add(formatMatchForOutput(match));
         }
         return summary;
+    }
+
+    private String formatMatchForOutput(IMatch match) {
+        return match.getHomeTeam() + " " + match.getHomeScore() + " - " + match.getAwayTeam() + " " + match.getAwayScore();
     }
 }
