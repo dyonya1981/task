@@ -47,4 +47,23 @@ class ScoreboardTest {
         assertEquals("Spain 10 - Brazil 2", summary.get(0).toString());
         assertEquals("Mexico 0 - Canada 5", summary.get(1).toString());
     }
+
+    @Test
+    void testDuplicateMatch() {
+        scoreboard.startMatch("Mexico", "Canada");
+        assertThrows(IllegalArgumentException.class, () -> scoreboard.startMatch("Mexico", "Canada"));
+    }
+
+    @Test
+    void testInvalidScoreUpdate() {
+        scoreboard.startMatch("Mexico", "Canada");
+        assertThrows(IllegalArgumentException.class, () -> scoreboard.updateScore("Mexico", "Canada", -1, 2));
+    }
+
+    @Test
+    void testFinishNonExistentMatch() {
+        scoreboard.startMatch("Mexico", "Canada");
+        scoreboard.finishMatch("Spain", "Brazil");
+        assertEquals(1, scoreboard.getSummary().size());  // Match still exists
+    }
 }
