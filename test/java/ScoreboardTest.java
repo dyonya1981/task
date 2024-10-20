@@ -72,4 +72,12 @@ class ScoreboardTest {
         scoreboard.startMatch("Mexico", "Canada");
         assertThrows(IllegalArgumentException.class, () -> scoreboard.updateScore("Spain", "Brazil", 3, 1));
     }
+
+    @Test
+    void testGetSummaryOutput() {
+        scoreboard.startMatch("Mexico", "Canada");
+        scoreboard.updateScore("Mexico", "Canada", 3, 1);
+        List<String> summary = scoreboard.getSummaryFormatted();
+        assertEquals("Mexico 3 - Canada 1", summary.get(0));
+    }
 }
