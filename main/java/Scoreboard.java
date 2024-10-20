@@ -48,4 +48,12 @@ public class Scoreboard implements IScoreboard{
                 .reversed().thenComparing(matches::indexOf));
         return new ArrayList<>(matches);
     }
+
+    public List<String> getSummaryFormatted() {
+        List<String> summary = new ArrayList<>();
+        for (IMatch match : getSummary()) {
+            summary.add(match.getHomeTeam() + " " + match.getHomeScore() + " - " + match.getAwayTeam() + " " + match.getAwayScore());
+        }
+        return summary;
+    }
 }
