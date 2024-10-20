@@ -66,4 +66,10 @@ class ScoreboardTest {
         scoreboard.finishMatch("Spain", "Brazil");
         assertEquals(1, scoreboard.getSummary().size());  // Match still exists
     }
+
+    @Test
+    void testUpdateScoreForNonExistingMatch() {
+        scoreboard.startMatch("Mexico", "Canada");
+        assertThrows(IllegalArgumentException.class, () -> scoreboard.updateScore("Spain", "Brazil", 3, 1));
+    }
 }
