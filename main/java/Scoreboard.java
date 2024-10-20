@@ -1,5 +1,7 @@
+/**
+ * Manages the scoreboard for ongoing football matches.
+ */
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +11,11 @@ public class Scoreboard implements IScoreboard{
     public Scoreboard() {
         this.matches = new ArrayList<>();
     }
-
+    /**
+     * Starts a new match with the given teams.
+     *
+     * @throws 'IllegalArgumentException' if the input is invalid.
+     */
     public void startMatch(String homeTeam, String awayTeam) {
         if (getMatch(homeTeam, awayTeam) != null) {
             throw new IllegalArgumentException("Match already exists");
@@ -55,8 +61,7 @@ public class Scoreboard implements IScoreboard{
     public List<String> getSummaryFormatted() {
         List<String> summary = new ArrayList<>();
 
-        // Iterate over the internal matches directly
-        for (Match match : matches) { // Assuming matches is a private List<Match>
+        for (Match match : matches) {
             summary.add(formatMatchForOutput(match));
         }
 
