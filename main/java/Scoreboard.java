@@ -11,11 +11,17 @@ public class Scoreboard {
     }
 
     public void startMatch(String homeTeam, String awayTeam) {
+        if (getMatch(homeTeam, awayTeam) != null) {
+            throw new IllegalArgumentException("Match already exists");
+        }
         Match match = new Match(homeTeam, awayTeam);
         matches.add(match);
     }
 
     public void updateScore(String homeTeam, String awayTeam, int homeScore, int awayScore) {
+        if (homeScore < 0 || awayScore < 0) {
+            throw new IllegalArgumentException("Scores cannot be negative");
+        }
         Match match = getMatch(homeTeam, awayTeam);
         if (match != null) {
             match.updateScore(homeScore, awayScore);
