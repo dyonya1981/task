@@ -23,9 +23,10 @@ public class Scoreboard implements IScoreboard{
             throw new IllegalArgumentException("Scores cannot be negative");
         }
         Match match = getMatch(homeTeam, awayTeam);
-        if (match != null) {
-            match.updateScore(homeScore, awayScore);
+        if (match == null) {
+            throw new IllegalArgumentException("Match does not exist");
         }
+        match.updateScore(homeScore, awayScore);
     }
 
     public void finishMatch(String homeTeam, String awayTeam) {
