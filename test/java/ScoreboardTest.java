@@ -95,4 +95,29 @@ class ScoreboardTest {
         assertThrows(IllegalArgumentException.class, () -> scoreboard.startMatch(null, "Canada"));
         assertThrows(IllegalArgumentException.class, () -> scoreboard.startMatch("Mexico", null));
     }
+
+    @Test
+    void testGetSummaryOrderedByScore() {
+        scoreboard.startMatch("Team A", "Team B");
+        scoreboard.updateScore("Team A", "Team B", 2, 1); // Total score 3
+
+        scoreboard.startMatch("Team C", "Team D");
+        scoreboard.updateScore("Team C", "Team D", 1, 1); // Total score 2
+
+        scoreboard.startMatch("Team E", "Team F");
+        scoreboard.updateScore("Team E", "Team F", 3, 0); // Total score 3
+
+        // Match E should come before Match A since it was started after it, but they have the same score.
+        List<IMatch> summary = scoreboard.getSummaryOrderedByScore();
+
+        assertEquals("Team E", summary.get(0).getHomeTeam()); // Team E should be first
+        assertEquals("Team F", summary.get(0).getAwayTeam());
+
+        assertEquals("Team A", summary.get(1).getHomeTeam()); // Team A should be second
+        assertEquals("Team B", summary.get(1).getAwayTeam());
+
+        assertEquals("Team C", summary.get(2).getHomeTeam()); // Team C should be last due to the lowest score
+        assertEquals("Team D", summary.get(2).getAwayTeam());
+    }
+}
 }
