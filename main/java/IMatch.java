@@ -3,4 +3,6 @@ public interface IMatch {
     String getAwayTeam();
     int getHomeScore();
     int getAwayScore();
+
+    int getCreationIndex();
 }

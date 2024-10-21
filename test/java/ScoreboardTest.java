@@ -120,4 +120,3 @@ class ScoreboardTest {
         assertEquals("Team D", summary.get(2).getAwayTeam());
     }
 }
-}
